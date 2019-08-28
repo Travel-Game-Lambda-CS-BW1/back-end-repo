@@ -2,7 +2,7 @@
 
 ## Register User
 
-https://travel-game-python.herokuapp.com/user/registration/
+https://travel-game-python.herokuapp.com/api/registration/
 
 Body:
 
@@ -27,7 +27,7 @@ Response:
 
 ## Login User
 
-https://travel-game-python.herokuapp.com/user/login/
+https://travel-game-python.herokuapp.com/api/login/
 
 Body:
 
