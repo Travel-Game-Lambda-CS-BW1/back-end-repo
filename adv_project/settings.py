@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-DATABASE_URL = config('DATABASE_URL')
+# DATABASE_URL = config('DATABASE_URL')
 
 ALLOWED_HOSTS = []
 
@@ -93,8 +93,15 @@ WSGI_APPLICATION = 'adv_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': config(default=f'postgres://{DATABASE_URL}')
+# }
+
 DATABASES = {
-    'default': config(default=f'postgres://{DATABASE_URL}')
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 
