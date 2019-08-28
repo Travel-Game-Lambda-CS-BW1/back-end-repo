@@ -32,7 +32,8 @@ DEBUG = config('DEBUG', cast=bool)
 
 DATABASE_URL = config('DATABASE_URL')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://travel-game-python.herokuapp.com",
+                 'http:/localhost:8000']
 
 
 # Application definition
