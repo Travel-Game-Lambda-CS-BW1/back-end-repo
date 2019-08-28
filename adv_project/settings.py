@@ -10,8 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+import django_heroku
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 import os
 from decouple import config
+import dj_database_url
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +30,10 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+DATABASE_URL = config('DATABASE_URL')
+
+ALLOWED_HOSTS = ["https://travel-game-python.herokuapp.com",
+                 'http:/localhost:8000']
 
 
 # Application definition
@@ -91,10 +98,7 @@ WSGI_APPLICATION = 'adv_project.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(default=f'postgres://{DATABASE_URL}')
 }
 
 
@@ -116,20 +120,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
     # ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',        'rest_framework.authentication.TokenAuthentication',
     ),
 }
 
-CORS_ORIGIN_ALLOW_ALL=True
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -150,8 +151,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# import django_heroku
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 
 GRAPHENE = {
     'SCHEMA': 'adventure.schema.schema'
