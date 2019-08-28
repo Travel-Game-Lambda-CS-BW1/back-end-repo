@@ -15,6 +15,10 @@ gunicorn = "*"
 django-heroku = "*"
 django-rest-api = "*"
 decouple = "*"
+import = "*"
+dj-database-url = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
