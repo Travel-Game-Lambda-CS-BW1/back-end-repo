@@ -30,10 +30,10 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-DATABASE_URL = config('DATABASE_URL')
-
 ALLOWED_HOSTS = ["https://travel-game-python.herokuapp.com",
                  'http:/localhost:8000']
+
+DATABASE_URL = config('DATABASE_URL')
 
 
 # Application definition
@@ -98,7 +98,7 @@ WSGI_APPLICATION = 'adv_project.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=f'{DATABASE_URL}', ssl_require=False)
+    'default': dj_database_url.config(default=f'postgres://{DATABASE_URL}')
 }
 
 
