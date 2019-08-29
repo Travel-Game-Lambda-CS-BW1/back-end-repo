@@ -62,6 +62,18 @@ r_wonderland.connectRooms(r_darkplace, "w")
 r_starlane.connectRooms(r_darkplace, "n")
 r_mercury.connectRooms(r_wonderland, "s")
 
+r_darkplace.connectRooms(r_outside, "e")
+r_outside.connectRooms(r_darkplace, "w")
+
+r_narrow.connectRooms(r_starlane, "n")
+r_starlane.connectRooms(r_narrow, "s")
+
+r_starlane.connectRooms(r_overlook, "e")
+r_overlook.connectRooms(r_starlane, "w")
+
+r_wonderland.connectRooms(r_outside, "e")
+r_outside.connectRooms(r_wonderland, "w")
+
 players = Player.objects.all()
 for p in players:
     p.currentRoom = r_outside.id
