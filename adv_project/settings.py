@@ -98,7 +98,7 @@ WSGI_APPLICATION = 'adv_project.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=f'postgres://{DATABASE_URL}')
+    'default': dj_database_url.config(default=f'{DATABASE_URL}', ssl_require=False)
 }
 
 
@@ -159,3 +159,5 @@ django_heroku.settings(locals())
 GRAPHENE = {
     'SCHEMA': 'adventure.schema.schema'
 }
+
+del DATABASES['default']['OPTIONS']['sslmode']
